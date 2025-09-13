@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L’Élite DZ — إشارات XAUUSD آلية</title>
+  <meta name="description" content="L’Élite DZ — منصة عربية تقدّم إشارات XAUUSD آلية عبر تيليغرام مع قواعد إدارة المخاطر." />
+  <meta name="theme-color" content="#0b0f14" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset minimal + anti-overflow + performance */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%; overflow-x:hidden; -webkit-text-size-adjust:100%}
+    :root{
+      --bg:#0b0f14; --bg2:#0e1420; --card:#121826;
+      --text:#e9eef7; --muted:#9aa7bc;
+      --gold:#d4af37; --ok:#28c76f; --red:#ff5b57;
+      --radius:16px; --shadow:0 8px 24px rgba(0,0,0,.28);
+      --max:1100px;
+      /* Plain chart background (inline SVG, no blur, très léger) */
+      --chart-bg: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'>\
+<rect width='1600' height='900' fill='%230b0f14'/>\
+<g opacity='0.18'>\
+  <g stroke='%23ffffff' stroke-opacity='0.08' stroke-width='1'>\
+    <path d='M0 100 H1600 M0 200 H1600 M0 300 H1600 M0 400 H1600 M0 500 H1600 M0 600 H1600 M0 700 H1600 M0 800 H1600'/>\
+    <path d='M100 0 V900 M200 0 V900 M300 0 V900 M400 0 V900 M500 0 V900 M600 0 V900 M700 0 V900 M800 0 V900 M900 0 V900 M1000 0 V900 M1100 0 V900 M1200 0 V900 M1300 0 V900 M1400 0 V900 M1500 0 V900'/>\
+  </g>\
+  <!-- Quelques chandeliers légers pour l'effet 'plain chart' -->\
+  <g stroke-width='10' stroke-linecap='round'>\
+    <g stroke='%2328c76f'>\
+      <line x1='180' y1='620' x2='180' y2='300'/>\
+      <rect x='165' y='360' width='30' height='160' fill='%2328c76f' fill-opacity='0.22' stroke='none'/>\
+      <line x1='360' y1='640' x2='360' y2='420'/>\
+      <rect x='345' y='470' width='30' height='120' fill='%2328c76f' fill-opacity='0.22' stroke='none'/>\
+      <line x1='540' y1='560' x2='540' y2='340'/>\
+      <rect x='525' y='380' width='30' height='120' fill='%2328c76f' fill-opacity='0.22' stroke='none'/>\
+    </g>\
+    <g stroke='%23ff5b57'>\
+      <line x1='260' y1='700' x2='260' y2='480'/>\
+      <rect x='245' y='560' width='30' height='100' fill='%23ff5b57' fill-opacity='0.18' stroke='none'/>\
+      <line x1='440' y1='760' x2='440' y2='530'/>\
+      <rect x='425' y='610' width='30' height='110' fill='%23ff5b57' fill-opacity='0.18' stroke='none'/>\
+    </g>\
+  </g>\
+  <path d='M0 650 L200 560 L350 600 L520 500 L700 540 L900 420 L1150 460 L1400 380 L1600 420' stroke='%23d4af37' stroke-opacity='0.35' stroke-width='2' fill='none'/>\
+</g></svg>");
+    }
+    body{
+      margin:0; font-family:"Tajawal", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: var(--chart-bg), linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      background-size: cover, auto;
+      background-repeat: no-repeat, no-repeat;
+      background-position: center, center;
+      /* pas de background-attachment: fixed pour fluidité mobile */
+    }
+    a{color:inherit; text-decoration:none}
+    img,svg,video{max-width:100%; height:auto; display:block}
+    .container{width:min(var(--max), 92%); margin-inline:auto}
+    .row{display:flex; gap:12px; align-items:center; flex-wrap:wrap; min-width:0}
+    .stack{display:grid; gap:10px; min-width:0}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10); border-radius:var(--radius); box-shadow:var(--shadow)
+    }
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:12px 16px; border-radius:12px; font-weight:800; border:1px solid transparent; cursor:pointer; min-width:0; white-space:nowrap}
+    .btn--gold{background:linear-gradient(135deg, var(--gold), #f6e27a); color:#1f1600}
+    .btn--ghost{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); color:#fff}
+    .btn--ghost:hover{background:rgba(255,255,255,.10)}
+    .muted{color:var(--muted)}
+    nav{position:sticky; top:0; z-index:50; background:rgba(11,15,20,.55); backdrop-filter:saturate(140%) blur(8px); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 0; flex-wrap:wrap}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800}
+    .logo{width:36px; height:36px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(135deg, var(--gold), #f6e27a); color:#221a00; box-shadow:var(--shadow)}
+    .links{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+
+    header.hero{
+      padding:48px 0 26px;
+      background: linear-gradient(180deg, rgba(11,15,20,0.0) 0%, rgba(11,15,20,0.35) 100%);
+    }
+    .hero-grid{display:grid; grid-template-columns:1fr; gap:18px}
+    @media (min-width: 920px){ .hero-grid{grid-template-columns:1.05fr .95fr} }
+    h1{font-size:clamp(26px, 4vw, 44px); margin:6px 0}
+    h2{font-size:clamp(22px, 3vw, 32px); margin:0 0 10px}
+    .lead{color:#cdd6e6; line-height:1.85}
+    .section{padding:44px 0}
+    .grid{display:grid; gap:16px}
+    .grid.cols-3{grid-template-columns:repeat(auto-fit, minmax(220px,1fr))}
+    .grid.cols-2{grid-template-columns:repeat(auto-fit, minmax(260px,1fr))}
+    .bullet{display:flex; gap:10px; align-items:flex-start}
+    .bullet svg{flex:0 0 18px}
+    .sig{padding:14px}
+    .sig .line{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
+    .chip{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.05); font-weight:700}
+    .tabs{display:grid; gap:10px}
+    .tab-head{display:flex; gap:8px; flex-wrap:wrap}
+    .tab-head button{flex:1 1 140px}
+    .panel{display:none}
+    .panel.active{display:block}
+    .copy{display:flex; gap:8px; align-items:center; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14); padding:10px; border-radius:10px}
+    .copy input{flex:1; min-width:0; background:transparent; border:none; color:#fff; font-family:inherit; font-size:.95rem; outline:none; direction:ltr}
+    .note{font-size:.9rem; color:#b7c0d0}
+    .scroll-x{overflow-x:auto; -webkit-overflow-scrolling:touch}
+    .modal{position:fixed; inset:0; display:none; place-items:center; z-index:100; background:rgba(0,0,0,.55)}
+    .modal.show{display:grid}
+    .modal .box{width:min(560px,92%); padding:20px; background:var(--card); border:1px solid rgba(255,255,255,.12); border-radius:16px}
+    *{word-wrap:break-word; overflow-wrap:anywhere}
+    @media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto; transition:none} }
+
+    /* TradingView container sizing (responsive) */
+    .tv-wrap{border:1px solid rgba(255,255,255,.10); border-radius:16px; overflow:hidden; background:#0e1420}
+    .tv-ratio{position:relative; width:100%; padding-top:56.25%} /* 16:9 */
+    .tv-ratio > .tradingview-widget-container{position:absolute; inset:0}
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo">DZ</div>
+        <div>
+          <div style="font-weight:800">L’Élite DZ</div>
+          <div class="muted" style="font-size:.86rem">إشارات XAUUSD آلية</div>
+        </div>
+      </div>
+      <div class="links">
+        <a href="#home" class="muted">الرئيسية</a>
+        <a href="#features" class="muted">المزايا</a>
+        <a href="#livechart" class="muted">الرسم المباشر</a>
+        <a href="#pricing" class="muted">الاشتراك</a>
+        <a href="#faq" class="muted">الأسئلة</a>
+        <a href="#contact" class="btn btn--ghost">تواصل</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="home">
+    <header class="hero">
+      <div class="container hero-grid">
+        <div class="stack">
+          <span style="color:var(--gold); font-weight:800; letter-spacing:.6px; font-size:.95rem">منصة عربية</span>
+          <h1>L’Élite DZ — إشارات XAUUSD آلية باحترافية</h1>
+          <p class="lead">
+            اشترك للوصول إلى قناتنا الخاصة وبوت تيليغرام. الإشارات تُرسل آلياً مع وقف خسارة وأهداف واضحة. المحتوى تعليمي وليس نصيحة استثمارية.
+          </p>
+          <div class="row">
+            <a href="#pricing" class="btn btn--gold">ابدأ الاشتراك</a>
+            <a href="#samples" class="btn btn--ghost">عيّنات الإشارات</a>
+          </div>
+        </div>
+        <div class="card" style="padding:16px">
+          <div class="stack">
+            <div class="bullet">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 7L9 18l-5-5" stroke="#28c76f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div><b>تنبيهات فورية</b><div class="muted">دخول + SL + أهداف متعددة وتحديثات تلقائية.</div></div>
+            </div>
+            <div class="bullet">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1v22M1 12h22" stroke="#f6e27a" stroke-width="2" stroke-linecap="round"/></svg>
+              <div><b>إدارة مخاطرة</b><div class="muted">نِسَب مخاطرة وأحجام إرشادية. القرار دائماً لك.</div></div>
+            </div>
+            <div class="bullet">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 15V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10" stroke="#9aa7bc" stroke-width="2" stroke-linecap="round"/></svg>
+              <div><b>وصول خاص</b><div class="muted">الدفع يفعّل الانضمام للقناة والبوت.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section container" id="features">
+      <h2>لماذا L’Élite DZ؟</h2>
+      <div class="grid cols-3">
+        <div class="card" style="padding:14px"><b>بوت تيليغرام</b><div class="muted">إشارات مُهيكلة وتعديلات SL/TP تلقائياً.</div></div>
+        <div class="card" style="padding:14px"><b>شفافية</b><div class="muted">سجل أداء قابل للمراجعة. لا وعود بعائد.</div></div>
+        <div class="card" style="padding:14px"><b>دعم عربي/فرنسي</b><div class="muted">استجابة سريعة داخل القناة.</div></div>
+      </div>
+    </section>
+
+    <!-- SECTION: Live TradingView Chart -->
+    <section class="section container" id="livechart">
+      <h2>الرسم المباشر لـ XAUUSD</h2>
+      <p class="note">الرسم أدناه من TradingView — تفاعلي وحديث في الوقت الحقيقي.</p>
+      <div class="tv-wrap">
+        <div class="tv-ratio">
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div id="tv-chart" class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright">
+              <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a>
+            </div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+            {
+              "autosize": true,
+              "symbol": "OANDA:XAUUSD",
+              "interval": "60",
+              "timezone": "Etc/UTC",
+              "theme": "dark",
+              "style": "1",
+              "locale": "ar",
+              "hide_top_toolbar": false,
+              "withdateranges": true,
+              "allow_symbol_change": true,
+              "calendar": false,
+              "studies": [
+                "STD;EMA@tv-basicstudies",
+                "STD;RSI@tv-basicstudies"
+              ]
+            }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+        </div>
+      </div>
+      <p class="note" style="margin-top:8px">
+        ملاحظة: إن لم يظهر الرسم، عطّل مانع الإعلانات أو افتح الصفحة عبر HTTPS.
+      </p>
+    </section>
+
+    <section class="section container" id="samples">
+      <h2>عيّنات إشارات (XAUUSD)</h2>
+      <div class="grid cols-2">
+        <div class="card sig">
+          <div class="row">
+            <span class="chip">شراء</span>
+            <span class="chip" style="background:rgba(40,199,111,.12); border-color:rgba(40,199,111,.3); color:#9ff0c7">مثال</span>
+          </div>
+          <div class="line"><span class="muted">الدخول</span><b>1905.00</b></div>
+          <div class="line"><span class="muted">وقف الخسارة</span><b>1896.50</b></div>
+          <div class="line"><span class="muted">الهدف 1</span><b>1910.50</b></div>
+          <div class="line"><span class="muted">الهدف 2</span><b>1916.00</b></div>
+          <div class="note">أمثلة تعليمية فقط.</div>
+        </div>
+        <div class="card sig">
+          <div class="row">
+            <span class="chip">بيع</span>
+            <span class="chip" style="background:rgba(212,175,55,.12); border-color:rgba(212,175,55,.35); color:#ffe28a">مثال</span>
+          </div>
+          <div class="line"><span class="muted">الدخول</span><b>1922.40</b></div>
+          <div class="line"><span class="muted">وقف الخسارة</span><b>1928.00</b></div>
+          <div class="line"><span class="muted">الهدف 1</span><b>1916.80</b></div>
+          <div class="line"><span class="muted">الهدف 2</span><b>1912.20</b></div>
+          <div class="note">أمثلة تعليمية فقط.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="pricing">
+      <h2>الاشتراك والدفع</h2>
+      <div class="card" style="padding:16px">
+        <div class="tabs">
+          <div class="tab-head">
+            <button class="btn btn--gold" data-tab="baridi">BaridiMob / الذهبية</button>
+            <button class="btn btn--ghost" data-tab="cib">بطاقة CIB</button>
+          </div>
+
+          <!-- BaridiMob -->
+          <div class="panel active" id="baridi">
+            <div class="grid cols-2">
+              <div class="stack">
+                <b>خطة شهرية — 19 دولار (ما يعادلها بالدينار)</b>
+                <div class="note">ادفع عبر BaridiMob أو بطاقة الذهبية إلى الحساب أدناه ثم فعّل الوصول.</div>
+
+                <label class="muted">حساب CCP</label>
+                <div class="copy">
+                  <input id="ccp" value="CCP 0000000 clé 00 — اسم: ELITE DZ" readonly>
+                  <button class="btn btn--gold" onclick="copy('ccp')">نسخ</button>
+                </div>
+
+                <label class="muted">رقم البطاقة (الذهبية) — للدفع عبر التطبيق</label>
+                <div class="copy">
+                  <input id="card" value="XXXX-XXXX-XXXX-XXXX" readonly>
+                  <button class="btn btn--gold" onclick="copy('card')">نسخ</button>
+                </div>
+
+                <div class="note">بعد الدفع، احتفظ بـ: رقم العملية + التاريخ + المبلغ.</div>
+              </div>
+
+              <div class="stack">
+                <b>تأكيد الوصول</b>
+                <ol style="margin:0; padding-right:18px; line-height:1.9">
+                  <li>أكمل الدفع عبر BaridiMob/الذهبية.</li>
+                  <li>اضغط الزر أدناه وأرسل <b>رقم العملية</b> للبوت.</li>
+                  <li>سيُفعَّل وصولك تلقائياً ثم انضم للقناة الخاصة.</li>
+                </ol>
+                <div class="row" style="margin-top:8px">
+                  <a class="btn btn--gold" target="_blank" rel="noopener" href="https://t.me/TELEGRAM_BOT_LINK">فتح بوت التفعيل</a>
+                  <a class="btn btn--ghost" href="?paid=1">فتحت الدفع؟ اضغط هنا</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CIB -->
+          <div class="panel" id="cib">
+            <div class="grid cols-2">
+              <div class="stack">
+                <b>الدفع ببطاقة CIB (إلكتروني)</b>
+                <div class="note">استعمل رابط الدفع الآمن التالي:</div>
+                <div class="copy">
+                  <input id="cibpay" value="https://PAYMENT_CIB_LINK" readonly>
+                  <button class="btn btn--gold" onclick="copy('cibpay')">نسخ</button>
+                </div>
+                <div class="row" style="margin-top:8px">
+                  <a class="btn btn--gold" target="_blank" rel="noopener" href="https://PAYMENT_CIB_LINK" data-checkout>ادفع الآن</a>
+                  <a class="btn btn--ghost" href="?paid=1">رجوع بعد الدفع</a>
+                </div>
+              </div>
+              <div class="stack">
+                <b>بعد النجاح</b>
+                <div class="note">ستظهر لك نافذة الانضمام للقناة والبوت تلقائياً.</div>
+                <ul style="margin:0; padding-right:18px; line-height:1.9">
+                  <li>لا تُشارك بيانات بطاقتك خارج صفحة الدفع الآمنة.</li>
+                  <li>ستحصل على إيصال إلكتروني.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="note" style="margin-top:10px">
+          ملاحظة: يمكنك تعديل السعر والروابط والحسابات داخل الكود بسهولة.
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="faq">
+      <h2>الأسئلة الشائعة</h2>
+      <div class="grid cols-2">
+        <div class="card" style="padding:14px">
+          <b>هل الإشارات مضمونة؟</b>
+          <div class="muted">لا. التداول عالي المخاطر وقد تخسر رأس المال كاملاً. المحتوى تعليمي.</div>
+        </div>
+        <div class="card" style="padding:14px">
+          <b>كيف يصلني التنبيه؟</b>
+          <div class="muted">عبر القناة الخاصة وبوت تيليغرام فورياً.</div>
+        </div>
+        <div class="card" style="padding:14px">
+          <b>هل تنفّذون الصفقات؟</b>
+          <div class="muted">لا. التنفيذ والقرار مسؤوليتك الشخصية.</div>
+        </div>
+        <div class="card" style="padding:14px">
+          <b>الاسترداد</b>
+          <div class="muted">ضع سياستك (مثلاً خلال 7 أيام عند عدم تفعيل الوصول) بما يتوافق مع القوانين المحلية.</div>
+        </div>
+      </div>
+      <div class="card" style="padding:14px; margin-top:14px">
+        <b>تنبيه مخاطر</b>
+        <p class="note">لا نقدّم نصيحة استثمارية أو وعود أرباح. باستخدامك للخدمة تقرّ أنك المسؤول الوحيد عن قراراتك.</p>
+      </div>
+    </section>
+
+    <section class="section container" id="contact">
+      <h2>تواصل</h2>
+      <div class="grid cols-2">
+        <div class="card" style="padding:14px">
+          <b>دعم تيليغرام</b>
+          <div class="row" style="margin-top:8px">
+            <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://t.me/TELEGRAM_BOT_LINK">افتح البوت</a>
+            <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://t.me/TELEGRAM_PRIVATE_LINK">القناة العامة</a>
+          </div>
+        </div>
+        <div class="card" style="padding:14px">
+          <b>بريد إلكتروني</b>
+          <div class="row" style="margin-top:8px">
+            <a class="btn btn--ghost" href="mailto:contact@elite-dz.example">contact@elite-dz.example</a>
+            <a class="btn btn--ghost" target="_blank" rel="noopener" href="https://wa.me/213555555555">واتساب</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="padding:34px 0; border-top:1px solid rgba(255,255,255,.08); color:#c8cfdb">
+    <div class="container row" style="justify-content:space-between; align-items:flex-start">
+      <div class="row">
+        <div class="logo">DZ</div>
+        <div style="font-weight:800; margin-inline-start:10px">L’Élite DZ</div>
+      </div>
+      <div class="note">© 2025 — كل الحقوق محفوظة. المحتوى تعليمي ولا يُشكّل نصيحة استثمارية.</div>
+    </div>
+  </footer>
+
+  <!-- نافذة نجاح بعد الدفع (?paid=1) -->
+  <div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+    <div class="box">
+      <div class="row" style="justify-content:space-between">
+        <h3 id="successTitle" style="margin:0">تم تفعيل الوصول — أهلاً بك!</h3>
+        <button class="btn btn--ghost" onclick="hideSuccess()">إغلاق</button>
+      </div>
+      <p class="muted">اضغط “نسخ الرابط” ثم افتحه في تيليغرام للانضمام مباشرةً.</p>
+      <div class="stack" style="gap:12px">
+        <div>
+          <b>رابط القناة الخاصة</b>
+          <div class="copy">
+            <input id="privLink" value="https://t.me/TELEGRAM_PRIVATE_LINK" readonly>
+            <button class="btn btn--gold" onclick="copy('privLink')">نسخ الرابط</button>
+          </div>
+        </div>
+        <div>
+          <b>رابط البوت</b>
+          <div class="copy">
+            <input id="botLink" value="https://t.me/TELEGRAM_BOT_LINK" readonly>
+            <button class="btn btn--gold" onclick="copy('botLink')">نسخ الرابط</button>
+          </div>
+        </div>
+      </div>
+      <p class="note" style="margin-top:8px">إن لم تُفتح الروابط تلقائياً، انسخها والصقها داخل تطبيق تيليغرام.</p>
+    </div>
+  </div>
+
+  <script>
+    // Tabs
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('[data-tab]');
+      if(!btn) return;
+      document.querySelectorAll('.tab-head .btn').forEach(b=>b.classList.replace('btn--gold','btn--ghost'));
+      btn.classList.replace('btn--ghost','btn--gold');
+      const id = btn.dataset.tab;
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    });
+
+    // Copy helpers
+    function copy(id){
+      const el = document.getElementById(id);
+      el.select?.(); el.setSelectionRange?.(0,99999);
+      const text = el.value || el.textContent;
+      (navigator.clipboard?.writeText(text) || document.execCommand('copy')).then?.(()=>{}).catch(()=>{});
+      const btn = el.parentElement.querySelector('.btn'); const old = btn.textContent;
+      btn.textContent = 'تم النسخ ✓'; setTimeout(()=>btn.textContent = old, 1200);
+    }
+
+    // Success modal on ?paid=1
+    function hasPaid(){return new URLSearchParams(location.search).get('paid')==='1'}
+    function showSuccess(){document.getElementById('successModal').classList.add('show')}
+    function hideSuccess(){document.getElementById('successModal').classList.remove('show')}
+    document.addEventListener('DOMContentLoaded', ()=>{ if(hasPaid()) showSuccess() });
+
+    // Anti horizontal scroll glitch on load
+    window.addEventListener('load', ()=>{ document.documentElement.scrollLeft = 0; document.body.scrollLeft = 0; });
+  </script>
+</body>
+</html>
